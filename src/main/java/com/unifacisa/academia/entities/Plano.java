@@ -1,7 +1,6 @@
 package com.unifacisa.academia.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Planos {
+public class Plano {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,5 +29,5 @@ public class Planos {
 
     @OneToMany(mappedBy = "planos")
     @JsonIgnore
-    private List<Alunos> alunos = new ArrayList<>();
+    private List<Aluno> alunos = new ArrayList<>();
 }

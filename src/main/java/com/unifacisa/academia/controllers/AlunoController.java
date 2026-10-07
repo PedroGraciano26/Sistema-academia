@@ -1,8 +1,7 @@
 package com.unifacisa.academia.controllers;
 
-import com.unifacisa.academia.entities.Alunos;
-import com.unifacisa.academia.services.AlunosService;
-import jakarta.persistence.*;
+import com.unifacisa.academia.entities.Aluno;
+import com.unifacisa.academia.services.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,23 +10,23 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/alunos")
-public class AlunosController {
+public class AlunoController {
 
     @Autowired
-    private AlunosService alunoService;
+    private AlunoService alunoService;
 
     @PostMapping
-    public Alunos cadastrarAluno(@RequestBody Alunos aluno){
+    public Aluno cadastrarAluno(@RequestBody Aluno aluno){
         return alunoService.cadastrarAluno(aluno);
     }
 
     @GetMapping
-    public List<Alunos> listar(){
+    public List<Aluno> listar(){
         return alunoService.listarAlunos();
     }
 
     @PutMapping("/{id}")
-    public Alunos atualizarCadastro(@PathVariable Integer id, @RequestBody Alunos alunos){
+    public Aluno atualizarCadastro(@PathVariable Integer id, @RequestBody Aluno alunos){
         return alunoService.atualizarAluno(id,alunos);
     }
 

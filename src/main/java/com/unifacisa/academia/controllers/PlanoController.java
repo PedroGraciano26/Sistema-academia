@@ -1,7 +1,7 @@
 package com.unifacisa.academia.controllers;
 
-import com.unifacisa.academia.entities.Planos;
-import com.unifacisa.academia.services.PlanosService;
+import com.unifacisa.academia.entities.Plano;
+import com.unifacisa.academia.services.PlanoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -10,30 +10,30 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/planos")
-public class PlanosController {
+public class PlanoController {
 
     @Autowired
-    private PlanosService planosService;
+    private PlanoService planoService;
 
     @PostMapping
-    public Planos salvar(@RequestBody Planos planos){
-        return planosService.cadastrarPlanos(planos);
+    public Plano salvar(@RequestBody Plano planos){
+        return planoService.cadastrarPlanos(planos);
     }
 
     @GetMapping
-    public List<Planos> listar(){
-        return planosService.listarPlanos();
+    public List<Plano> listar(){
+        return planoService.listarPlanos();
     }
 
     @PutMapping("/{id}")
-    public Planos atualizar(@PathVariable Integer id, @RequestBody Planos planos){
-        return planosService.atualizarPlanos(id, planos);
+    public Plano atualizar(@PathVariable Integer id, @RequestBody Plano planos){
+        return planoService.atualizarPlanos(id, planos);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletar(@PathVariable Integer id){
-        planosService.deletarPlano(id);
+        planoService.deletarPlano(id);
     }
 
 }

@@ -1,10 +1,10 @@
 package com.unifacisa.academia.services;
 
 
-import com.unifacisa.academia.entities.Alunos;
-import com.unifacisa.academia.entities.Planos;
-import com.unifacisa.academia.repositories.AlunosRepository;
-import com.unifacisa.academia.repositories.PlanosRepository;
+import com.unifacisa.academia.entities.Aluno;
+import com.unifacisa.academia.entities.Plano;
+import com.unifacisa.academia.repositories.AlunoRepository;
+import com.unifacisa.academia.repositories.PlanoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -13,19 +13,19 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @Service
-public class AlunosService {
+public class AlunoService {
 
     @Autowired
-    private AlunosRepository alunoRepository;
-    private PlanosRepository planosRepository;
+    private AlunoRepository alunoRepository;
+    private PlanoRepository planosRepository;
 
-    public Alunos cadastrarAluno(Alunos aluno) {
+    public Aluno cadastrarAluno(Aluno aluno) {
 
         if (aluno.getPlanos() != null) {
 
             Integer idPlano = aluno.getPlanos().getIdPlano();
 
-            Planos plano = planosRepository.findById(idPlano)
+            Plano plano = planosRepository.findById(idPlano)
                     .orElseThrow(() -> new ResponseStatusException(
                             HttpStatus.NOT_FOUND,
                             "Plano não encontrado"
@@ -37,12 +37,12 @@ public class AlunosService {
         return alunoRepository.save(aluno);
     }
 
-    public List<Alunos> listarAlunos(){
+    public List<Aluno> listarAlunos(){
         return alunoRepository.findAll();
     }
 
-    public Alunos atualizarAluno(Integer id, Alunos dados){
-        Alunos existente = alunoRepository.findById(id)
+    public Aluno atualizarAluno(Integer id, Aluno dados){
+        Aluno existente = alunoRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Paciente não encontrado"));
 
         if (dados.getNome() != null) {
@@ -59,7 +59,7 @@ public class AlunosService {
     }
 
     public void deletarAluno(Integer id) {
-        Alunos aluno = alunoRepository.findById(id)
+        Aluno aluno = alunoRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND,
                         "Aluno não encontrado"

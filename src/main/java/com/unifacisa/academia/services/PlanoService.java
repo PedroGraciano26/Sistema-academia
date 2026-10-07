@@ -1,31 +1,30 @@
 package com.unifacisa.academia.services;
 
-import com.unifacisa.academia.entities.Planos;
-import com.unifacisa.academia.repositories.PlanosRepository;
+import com.unifacisa.academia.entities.Plano;
+import com.unifacisa.academia.repositories.PlanoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
 @Service
-public class PlanosService {
+public class PlanoService {
 
     @Autowired
-    private PlanosRepository planoRepository;
+    private PlanoRepository planoRepository;
 
-    public Planos cadastrarPlanos(Planos plano){
+    public Plano cadastrarPlanos(Plano plano){
         return planoRepository.save(plano);
     }
 
-    public List<Planos> listarPlanos(){
+    public List<Plano> listarPlanos(){
         return planoRepository.findAll();
     }
 
-    public Planos atualizarPlanos(Integer id, Planos dados){
-        Planos existente = planoRepository.findById(id)
+    public Plano atualizarPlanos(Integer id, Plano dados){
+        Plano existente = planoRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Plano não encontrado"));
         if (dados.getNome() != null) {
             existente.setNome(dados.getNome());

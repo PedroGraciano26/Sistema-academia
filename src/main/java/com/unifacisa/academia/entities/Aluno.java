@@ -12,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Alunos {
+public class Aluno {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,7 +25,7 @@ public class Alunos {
 
     @ManyToOne
     @JoinColumn(name = "plano_id")
-    private Planos planos;
+    private Plano planos;
 
 //    @OneToMany(mappedBy = "aluno")
 //    private List<Treino> treinos = new ArrayList<>();
